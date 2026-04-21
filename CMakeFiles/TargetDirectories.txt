@@ -1,0 +1,3 @@
+/home/student/proj/CMakeFiles/city_manager.dir
+/home/student/proj/CMakeFiles/edit_cache.dir
+/home/student/proj/CMakeFiles/rebuild_cache.dir

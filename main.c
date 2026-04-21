@@ -15,11 +15,18 @@ int main(int argc, char *argv[])
             strcpy(command, "add");
             strcpy(district, argv[++i]);
         }
+        else if (strcmp(argv[i], "--list") == 0 && i + 1 < argc) {
+            strcpy(command, "list");
+            strcpy(district, argv[++i]);
+        }
     }
 
     if (strcmp(command, "add") == 0)
     {
         district_init(district);
+    }
+    else if (strcmp(command, "list") == 0) {
+        list_reports(district);
     }
     else
     {

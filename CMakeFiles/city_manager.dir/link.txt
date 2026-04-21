@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/city_manager.dir/main.c.o CMakeFiles/city_manager.dir/operation.c.o -o city_manager 

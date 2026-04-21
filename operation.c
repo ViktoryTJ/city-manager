@@ -67,3 +67,22 @@ void district_init(const char *district)
 
     printf("District initialized: %s\n", district);
 }
+
+void list_reports(const char *district) {
+    char path[256];
+    snprintf(path, sizeof(path), "%s/reports.dat", district);
+
+    int fd = open(path, O_RDONLY);
+    if (fd < 0) {
+        perror("reports.dat failed");
+        return;
+    }
+    char buffer[256];
+    int bytes;
+
+    while ((bytes = read(fd, buffer, 256)) > 0) {
+        write(STDOUT_FILENO, buffer, bytes);
+    }
+    close(fd);
+
+}
