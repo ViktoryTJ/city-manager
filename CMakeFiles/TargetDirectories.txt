@@ -1,3 +1,0 @@
-C:/Users/vikto/CLionProjects/city-manager/CMakeFiles/city_manager.dir
-C:/Users/vikto/CLionProjects/city-manager/CMakeFiles/edit_cache.dir
-C:/Users/vikto/CLionProjects/city-manager/CMakeFiles/rebuild_cache.dir
