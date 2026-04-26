@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "city_manager"
+			"path" : "city_manager.exe"
+		},
+		{
+			"path" : "city_manager.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -29,16 +32,18 @@
 			}
 		]
 	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
 	"compileGroups" : 
 	[
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fdiagnostics-color=always"
-				},
-				{
-					"fragment" : "-std=gnu11"
+					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
 				}
 			],
 			"language" : "C",
@@ -67,14 +72,14 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "",
-				"role" : "flags"
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "C"
 	},
 	"name" : "city_manager",
-	"nameOnDisk" : "city_manager",
+	"nameOnDisk" : "city_manager.exe",
 	"paths" : 
 	{
 		"build" : ".",

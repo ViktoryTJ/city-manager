@@ -1,10 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/city_manager.dir/main.c.o"
-  "CMakeFiles/city_manager.dir/main.c.o.d"
-  "CMakeFiles/city_manager.dir/operation.c.o"
-  "CMakeFiles/city_manager.dir/operation.c.o.d"
-  "city_manager"
+  "CMakeFiles/city_manager.dir/main.c.obj"
+  "CMakeFiles/city_manager.dir/main.c.obj.d"
+  "CMakeFiles/city_manager.dir/operation.c.obj"
+  "CMakeFiles/city_manager.dir/operation.c.obj.d"
+  "city_manager.exe"
+  "city_manager.exe.manifest"
   "city_manager.pdb"
+  "libcity_manager.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

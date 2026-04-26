@@ -2,11 +2,12 @@
 	"configurations" : 
 	[
 		{
+			"abstractTargets" : [],
 			"directories" : 
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -39,7 +40,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "city_manager::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-city_manager-Debug-44d30a04e0e315a52ae5.json",
+					"jsonFile" : "target-city_manager-Debug-f2acdeb09dfb98bf9570.json",
 					"name" : "city_manager",
 					"projectIndex" : 0
 				}
@@ -49,12 +50,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/student/proj",
-		"source" : "/home/student/proj"
+		"build" : "C:/Users/vikto/CLionProjects/city-manager",
+		"source" : "C:/Users/vikto/CLionProjects/city-manager"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 9
 	}
 }
