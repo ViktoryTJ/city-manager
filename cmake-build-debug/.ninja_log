@@ -1,0 +1,4 @@
+# ninja log v6
+0	50	1777354679052454757	CMakeFiles/city_manager.dir/main.c.o	cd43443dcbcf5a00
+1	52	1777354679052454757	CMakeFiles/city_manager.dir/operation.c.o	6c86cee7960f8307
+52	69	1777354679104454956	city_manager	cd85b5d74af6d642

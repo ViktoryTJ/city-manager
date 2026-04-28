@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <time.h>
 
 #define REPORT_PERMISSION 0664
@@ -293,6 +294,35 @@ void remove_report(const char *district, int id, const char *role, const char *u
         printf("Not found\n");
 
     log_action(district, role, user, "remove_report");
+}
+
+void remove_district(const char *district, const char *role, const char *user)
+{
+    if (strcmp(role, "manager") != 0)
+    {
+        printf("Permission denied\n");
+        return;
+    }
+    pid_t pid = fork();
+    if (pid <0)
+    {
+        perror("fork failed");
+        return;
+    }
+    if (pid == 0)
+    {
+        execlp("rm" , "rm", "-rf" , district,NULL);
+        perror("exec failed");
+        exit(1);
+    }
+    else {
+        wait(NULL);
+        char linkname[128];
+        snprintf(linkname, sizeof(linkname), "active_reports-%s", district);
+        unlink(linkname);
+        printf("District removed: %s\n", district );
+    }
+
 }
 
 // -------------------- UPDATE THRESHOLD --------------------

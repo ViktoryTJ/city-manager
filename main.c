@@ -76,6 +76,11 @@ int main(int argc, char *argv[])
                 conds[nconds++] = argv[++i];
             }
         }
+        else if (strcmp(argv[i], "--remove_district") == 0 && i + 1 < argc)
+        {
+            strcpy(command, "remove_district");
+            strcpy(district, argv[++i]);
+        }
     }
 
     // -------------------- BASIC CHECK --------------------
@@ -114,6 +119,10 @@ int main(int argc, char *argv[])
     else if (strcmp(command, "filter") == 0)
     {
         filter_reports(district, role, user, nconds, conds);
+    }
+    else if (strcmp(command, "remove_district") == 0)
+    {
+        remove_district(district,role,user);
     }
     else
     {
