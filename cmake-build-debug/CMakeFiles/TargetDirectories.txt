@@ -1,3 +1,0 @@
-/home/student/city-manager/cmake-build-debug/CMakeFiles/city_manager.dir
-/home/student/city-manager/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/student/city-manager/cmake-build-debug/CMakeFiles/rebuild_cache.dir

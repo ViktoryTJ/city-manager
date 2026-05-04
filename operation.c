@@ -8,10 +8,48 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <time.h>
+#include <signal.h>
 
 #define REPORT_PERMISSION 0664
 
 // -------------------- PERMISSION PRINT --------------------
+
+void notify_monitor(const char *district, const char *role, const char *user)
+{
+    int fd = open(".monitor_pid", O_RDONLY);
+    if (fd < 0)
+    {
+        printf("Monitor not running\n");
+        log_action(district, role, user, "monitor_not_found");
+        return;
+    }
+
+    char buffer[32];
+    int n = read(fd, buffer, sizeof(buffer) - 1);
+    close(fd);
+
+    if (n <= 0)
+    {
+        printf("Error reading PID\n");
+        log_action(district, role, user, "monitor_pid_error");
+        return;
+    }
+
+    buffer[n] = '\0';
+    int pid = atoi(buffer);
+
+    if (kill(pid, SIGUSR1) == -1)
+    {
+        perror("kill");
+        printf("Monitor could not be notified\n");
+        log_action(district, role, user, "monitor_notify_failed");
+    }
+    else
+    {
+        printf("Monitor notified\n");
+        log_action(district, role, user, "monitor_notified");
+    }
+}
 
 void print_permissions(mode_t mode)
 {
@@ -161,6 +199,8 @@ void add_report(const char *district, const char *role, const char *user)
     close(fd);
 
     printf("Report added!\n");
+
+    notify_monitor(district, role, user);
 
     log_action(district, role, user, "add_report");
 }

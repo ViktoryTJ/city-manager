@@ -6,34 +6,32 @@
 
 #define PID_FILE ".monitor_pid"
 
-//report added
 void handle_sigusr1(int sig)
 {
-    write(1, "New report added\n",17);
+    write(1, "New report added\n", 17);
 }
-
-//program stopped (ctrl+c)
 
 void handle_sigint(int sig)
 {
-    write(1, "Monitor shutting down\n",23);
+    write(1, "Monitor shutting down\n", 23);
     unlink(PID_FILE);
     exit(0);
 }
 
-int main() {
-    int fd = open (PID_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    if (fd < 0 )
+int main()
+{
+    int fd = open(PID_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd < 0)
     {
-        perror ("open failed ");
+        perror("open failed");
         return 1;
     }
+
     char buf[32];
     int len = sprintf(buf, "%d\n", getpid());
     write(fd, buf, len);
     close(fd);
 
-    //----------------------SIGNALS----------------------
     struct sigaction sa1;
     sa1.sa_handler = handle_sigusr1;
     sigemptyset(&sa1.sa_mask);
@@ -50,5 +48,6 @@ int main() {
     {
         pause();
     }
+
     return 0;
 }
