@@ -104,22 +104,6 @@ timestamp | role | user | action
 
 ---
 
-## 🚫 Ignored Files
-
-- cmake-build-debug/
-- .idea/
-- .monitor_pid
-- generated districts (e.g. downtown/)
-
----
-
-## ✅ Status
-
-- Phase 1: ✔️ Completed  
-- Phase 2: ✔️ Completed  
-
----
-
 ## 👤 Author
 
 Viktor Janosy
