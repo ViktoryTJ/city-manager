@@ -1,0 +1,9 @@
+# ninja log v6
+0	8	1777959125488974047	build.ninja	20dce7a53ec5bd32
+0	24	1777958749086454974	CMakeFiles/city_manager.dir/main.c.o	cd43443dcbcf5a00
+0	27	1777958749086454974	CMakeFiles/city_manager.dir/monitor_reports.c.o	da2d2b9ed25b652a
+0	10	1777958944359590143	city_manager	cd85b5d74af6d642
+0	34	1777958749086454974	CMakeFiles/city_manager.dir/operation.c.o	6c86cee7960f8307
+0	9	1777959125488974047	build.ninja	20dce7a53ec5bd32
+0	18	1777959149109137012	CMakeFiles/monitor.dir/monitor_reports.c.o	36bf9156d61577c1
+18	27	1777959149129137149	monitor	cfdc4f9d034e4d61
