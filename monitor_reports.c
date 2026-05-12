@@ -6,6 +6,8 @@
 
 #define PID_FILE ".monitor_pid"
 
+
+
 void handle_sigusr1(int sig)
 {
     write(1, "New report added\n", 17);
@@ -20,6 +22,9 @@ void handle_sigint(int sig)
 
 int main()
 {
+    printf("Monitor started");
+    fflush(stdout);
+
     int fd = open(PID_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd < 0)
     {
