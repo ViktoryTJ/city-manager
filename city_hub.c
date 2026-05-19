@@ -13,6 +13,7 @@ int main()
     while (1)
     {
         printf("city_hub> ");
+
         fflush(stdout);
 
         if (fgets(command, sizeof(command), stdin) == NULL)
@@ -22,18 +23,32 @@ int main()
 
         command[strcspn(command, "\n")] = '\0';
 
+        // -------------------- EXIT --------------------
+
         if (strcmp(command, "exit") == 0)
         {
             break;
         }
 
+        // -------------------- START MONITOR --------------------
+
         else if (strcmp(command, "start_monitor") == 0)
         {
             int fd[2];
 
-            pipe(fd);
+            if (pipe(fd) < 0)
+            {
+                perror("pipe failed");
+                continue;
+            }
 
             pid_t pid = fork();
+
+            if (pid < 0)
+            {
+                perror("fork failed");
+                continue;
+            }
 
             if (pid == 0)
             {
@@ -46,6 +61,7 @@ int main()
                 execl("./monitor", "monitor", NULL);
 
                 perror("exec failed");
+
                 exit(1);
             }
             else
@@ -54,7 +70,9 @@ int main()
 
                 char buffer[256];
 
-                int n = read(fd[0], buffer, sizeof(buffer) - 1);
+                int n = read(fd[0],
+                             buffer,
+                             sizeof(buffer) - 1);
 
                 if (n > 0)
                 {
@@ -64,20 +82,36 @@ int main()
                 }
 
                 close(fd[0]);
+
+                waitpid(pid, NULL, 0);
             }
         }
 
-        else if (strncmp(command, "calculate_score ", 16) == 0)
+        // -------------------- CALCULATE SCORE --------------------
+
+        else if (strncmp(command,
+                         "calculate_score ",
+                         16) == 0)
         {
             char district[64];
 
-            sscanf(command + 16, "%s", district);
+            sscanf(command + 16, "%63s", district);
 
             int fd[2];
 
-            pipe(fd);
+            if (pipe(fd) < 0)
+            {
+                perror("pipe failed");
+                continue;
+            }
 
             pid_t pid = fork();
+
+            if (pid < 0)
+            {
+                perror("fork failed");
+                continue;
+            }
 
             if (pid == 0)
             {
@@ -87,9 +121,13 @@ int main()
 
                 close(fd[1]);
 
-                execl("./scorer", "scorer", district, NULL);
+                execl("./scorer",
+                      "scorer",
+                      district,
+                      NULL);
 
                 perror("exec failed");
+
                 exit(1);
             }
             else
@@ -98,7 +136,9 @@ int main()
 
                 char buffer[512];
 
-                int n = read(fd[0], buffer, sizeof(buffer) - 1);
+                int n = read(fd[0],
+                             buffer,
+                             sizeof(buffer) - 1);
 
                 if (n > 0)
                 {
@@ -108,12 +148,16 @@ int main()
                 }
 
                 close(fd[0]);
+
+                waitpid(pid, NULL, 0);
             }
         }
 
+        // -------------------- INVALID --------------------
+
         else
         {
-            printf("Unknown command \n");
+            printf("Unknown command\n");
         }
     }
 

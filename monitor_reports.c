@@ -6,15 +6,15 @@
 
 #define PID_FILE ".monitor_pid"
 
-
-
 void handle_sigusr1(int sig)
 {
+    (void)sig;
     write(1, "New report added\n", 17);
 }
 
 void handle_sigint(int sig)
 {
+    (void)sig;
     write(1, "Monitor shutting down\n", 23);
     unlink(PID_FILE);
     exit(0);
@@ -22,7 +22,7 @@ void handle_sigint(int sig)
 
 int main()
 {
-    printf("Monitor started");
+    printf("Monitor started\n");
     fflush(stdout);
 
     int fd = open(PID_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -34,6 +34,7 @@ int main()
 
     char buf[32];
     int len = sprintf(buf, "%d\n", getpid());
+
     write(fd, buf, len);
     close(fd);
 
